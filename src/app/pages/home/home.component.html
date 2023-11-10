@@ -670,20 +670,21 @@
         <!-- Modal body -->
         <div class="modal-body">
             <div class="login-container">
-                <h1>Login</h1>
                 <!--Login-->
                 <form *ngIf="isLoginView" >
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
+                    <h1>Login</h1>
+                    <label for="username">ContactNo</label>
+                    <input type="text" id="username" [(ngModel)]="loginObj.ContactNo" name="ContactNo" required>
                     
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" [(ngModel)]="loginObj.Password" name="Password" required>
                     
-                    <button type="submit">Login</button>
+                    <button type="button" (click)="onLogin()">Login</button>
                     <p>Don't have an account?<a href="#" (click)="isLoginView = false">Sign up here</a></p>
                 </form>
                 <!--Signup-->
                 <form *ngIf="!isLoginView">
+                    <h1>Register</h1>
                     <label for="username">Name</label>
                     <input type="text" id="username" [(ngModel)]="registerObj.Name" name="Name" required>
                     <label for="Email">Email</label>
@@ -692,9 +693,14 @@
                     <input type="password" id="password" [(ngModel)]="registerObj.Password" name="Password" required>
                     <label for="number">ContactNo</label>
                     <input type="number" id="Contactno" [(ngModel)]="registerObj.ContactNo" name="ContactNo" required>
-                    
-                    <button type="button">Register</button>
-                    <p>Login If Already Registered ? <a href=""(click)="isLoginView = true">Login</a></p>
+                    <label for="number">What r u </label>
+                    <select [(ngModel)]="registerObj.Role" name="Role" >
+                        <option value="">Select Your Role</option>
+                        <option value="Event Planner">Event Planner</option>
+                        <option value="Customer">Customer</option>
+                    </select>      
+                    <button type="button" (click)="onRegister()">Register</button>
+                    <p>Login If Already Registered ? <a href="#"(click)="isLoginView = true">Login</a></p>
                 </form>
             </div>
         </div>
