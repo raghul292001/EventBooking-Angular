@@ -1,1 +1,86 @@
+<nav class="navbar navbar-expand-lg navbar-white myNav">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <img src="assets/eventLogo.png" alt="" class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" *ngIf="loggedUserData?.role =='Event Planner'">
+                    <a class="nav-link active" aria-current="page" routerLink="/new-event">Create Event</a>
+                </li>
+            </ul>
+            <form class="d-flex" *ngIf="!isUserLoggedin"> 
+                <button class="btn btn-outline-primary round-button mx-2" type="button" (click)="openLogin()" >Login</button>
+                <button class="btn btn-success round-button" type="button">Register</button>
+            </form>
+            <form class="d-flex" *ngIf="isUserLoggedin"> 
+                  {{loggedUserData.contactNo}}
+                <button class="btn btn-success round-button" (click)="logOff()" type="button">LogOff</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<!--Modal-->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="login-container">
+                <!--Login-->
+                <form *ngIf="isLoginView" >
+                    <h1>Login</h1>
+                    <label for="username">ContactNo</label>
+                    <input type="text" id="username" [(ngModel)]="loginObj.ContactNo" name="ContactNo" required>
+                    
+                    <label for="password">Password</label>
+                    <input type="password" id="password" [(ngModel)]="loginObj.Password" name="Password" required>
+                    
+                    <button type="button" (click)="onLogin()">Login</button>
+                    <p>Don't have an account?<a href="#" (click)="isLoginView = false">Sign up here</a></p>
+                </form>
+                <!--Signup-->
+                <form *ngIf="!isLoginView">
+                    <h1>Register</h1>
+                    <label for="username">Name</label>
+                    <input type="text" id="username" [(ngModel)]="registerObj.Name" name="Name" required>
+                    <label for="Email">Email</label>
+                    <input type="email" id="email" [(ngModel)]="registerObj.Email" name="Email" required>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" [(ngModel)]="registerObj.Password" name="Password" required>
+                    <label for="number">ContactNo</label>
+                    <input type="number" id="Contactno" [(ngModel)]="registerObj.ContactNo" name="ContactNo" required>
+                    <label for="number">What r u </label>
+                    <select [(ngModel)]="registerObj.Role" name="Role" >
+                        <option value="">Select Your Role</option>
+                        <option value="Event Planner">Event Planner</option>
+                        <option value="Customer">Customer</option>
+                    </select>      
+                    <button type="button" (click)="onRegister()">Register</button>
+                    <p>Login If Already Registered ? <a href="#"(click)="isLoginView = true">Login</a></p>
+                </form>
+            </div>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+
 <router-outlet></router-outlet>
