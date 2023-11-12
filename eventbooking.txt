@@ -1,0 +1,24 @@
+event planner 1 
+
+roles
+      => Customer
+      => EventPlanner
+
+components
+         Home => All
+         newBooking => customer
+         myBooking => customer
+ 
+        createEvent => EventPlanner
+        eventList => EventPlanner
+        eventBooking => EventPlanner
+
+
+
+
+
+
+
+
+1112223333
+112233

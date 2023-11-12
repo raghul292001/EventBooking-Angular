@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class NewEventComponent {
 
-  eventObj : any = {
+  eventObj: any = {
     "EventId": 0,
     "EventName": "",
     "Description": "",
@@ -24,28 +24,42 @@ export class NewEventComponent {
     "IsIdentityMandatory": true,
     "IsCoupleEntryMandatory": true
   };
-
   loggedUserData:any;
-  constructor(private http:HttpClient){
-    const localData = localStorage.getItem('eventUser');
-    if(localData != null){
-      //Show User Data 
+  constructor(private http:HttpClient) {
+    const localData= localStorage.getItem('eventUser');
+    if(localData != null) { 
       this.loggedUserData = JSON.parse(localData);
-      this.eventObj.OrganizerId = this.loggedUserData.UserId;
+      this.eventObj.OrganizerId = this.loggedUserData.userId;
     }
   }
 
-  onCreateEvent(){
+  onCreateEvent() {
     this.http.post('https://freeapi.miniprojectideas.com/api/EventBooking/CreateEvent', this.eventObj).subscribe((res:any)=>{
-    if(res.result){
-      alert('Event Created Successfully');
-    } else {
-      alert(res.data);
-    }
+      if(res.result) {
+        alert('Event Created');
+        this.eventObj = {
+          "EventId": 0,
+          "EventName": "",
+          "Description": "",
+          "Location": "",
+          "StartDate": "",
+          "StartTime": "",
+          "EndDate": "",
+          "EndTime": "",
+          "ImageUrl": "",
+          "Capacity": "",
+          "Price": 0,
+          "OrganizerId": 0,
+          "IsIdentityMandatory": true,
+          "IsCoupleEntryMandatory": true
+        };
+      } else {
+        alert(res.data)
+      }
     })
-
   }
-
 }
+
+
 
 

@@ -1,1 +1,14 @@
-<p>event-list works!</p>
+<div class="container" style="display: flex">
+    <div class="row" >
+        <div class="col-3">
+            <div class="card" *ngFor="let event of eventList">
+                <img class="card-img-top" [src]="event.imageUrl" alt="Card image">
+                <div class="card-body">
+                  <h4 class="card-title">{{event.eventName}}</h4>
+                  <p class="card-text">{{event.startDate}} - {{event.location}} - {{event.price}}</p>
+                  <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

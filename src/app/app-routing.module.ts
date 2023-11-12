@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { MyBookingsComponent } from './pages/my-bookings/my-bookings.component';
 import { NewEventComponent } from './pages/new-event/new-event.component';
 import { EventBookingComponent } from './pages/event-booking/event-booking.component';
+import { EventListComponent } from './pages/event-list/event-list.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path:'new-event',
     component:NewEventComponent
+  },
+  {
+    path:'event-list',
+    component:EventListComponent
   },
   {
     path:'event-bookings',

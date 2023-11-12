@@ -13,6 +13,15 @@
                 <li class="nav-item" *ngIf="loggedUserData?.role =='Event Planner'">
                     <a class="nav-link active" aria-current="page" routerLink="/new-event">Create Event</a>
                 </li>
+                <li class="nav-item" *ngIf="loggedUserData?.role =='Event Planner'">
+                    <a class="nav-link active" aria-current="page" routerLink="/event-list">Events List</a>
+                </li>
+                <li class="nav-item" *ngIf="loggedUserData?.role == 'Event Planner'" >
+                    <a class="nav-link active" aria-current="page" routerLink="/event-bookings">Bookings </a>
+                </li>
+                <li class="nav-item" *ngIf="loggedUserData?.role == 'Customer'" >
+                    <a class="nav-link active" aria-current="page" routerLink="/my-bookings">My Bookings </a>
+                </li>
             </ul>
             <form class="d-flex" *ngIf="!isUserLoggedin"> 
                 <button class="btn btn-outline-primary round-button mx-2" type="button" (click)="openLogin()" >Login</button>
@@ -25,6 +34,9 @@
         </div>
     </div>
 </nav>
+
+<router-outlet></router-outlet>
+
 <!--Modal-->
 <div class="modal" id="myModal">
     <div class="modal-dialog">
@@ -81,6 +93,3 @@
       </div>
     </div>
   </div>
-
-
-<router-outlet></router-outlet>
